@@ -16,7 +16,7 @@ public class CsvController {
 
   private final OperationService operationService;
   private static final String fileCSV = "./src/main/webapp/file.csv";
-  private File file = new File(fileCSV);
+  private final File file = new File(fileCSV);
 
   @Autowired
   public CsvController(OperationService operationService) {
