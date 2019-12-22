@@ -1,11 +1,10 @@
 package com.scc.web.service;
 
-import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import org.springframework.stereotype.Component;
 
 @Component
 public class AddAndDeleteEntryCheckDuplicateImpl implements AddAndDeleteEntryCheckDuplicate {
@@ -24,9 +23,8 @@ public class AddAndDeleteEntryCheckDuplicateImpl implements AddAndDeleteEntryChe
     return list;
   }
 
-  public List<List<String>> deleteEntry(List<List<String>> list, String entry){
-        List<String> myList = new ArrayList<>(Collections.singletonList(entry));
-        list.remove(myList);
+  public List<List<String>> deleteEntry(List<List<String>> list, int entry){
+        list.remove(entry);
     return list;
   }
 }

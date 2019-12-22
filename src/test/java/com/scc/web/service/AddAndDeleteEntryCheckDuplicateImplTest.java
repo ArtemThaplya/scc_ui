@@ -1,19 +1,21 @@
 package com.scc.web.service;
 
-import com.scc.web.service.AddAndDeleteEntryCheckDuplicateImpl;
-import org.junit.Before;
-import org.junit.Test;
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.assertEquals;
+import org.hamcrest.core.Is;
+import org.junit.Before;
+import org.junit.Test;
 
 public class AddAndDeleteEntryCheckDuplicateImplTest {
   private static final String ENTRY_A = "a,a";
   private static final String ENTRY_B = "b,b";
   private static final String ENTRY_C = "c,c";
   private static final String ENTRY_E = "e,e";
+  private static final int ENTRY_DELETE = 0;
   private List<List<String>> expected;
   private List<String> expected1;
   private List<List<String>> list;
@@ -45,15 +47,15 @@ public class AddAndDeleteEntryCheckDuplicateImplTest {
     List<List<String>> actual2 =
         addAndDeleteEntryCheckDuplicateImpl.checkDuplicateAndAddEntry(actual, ENTRY_A);
 
-    assertEquals(expected, actual2);
+    assertThat(actual2, is(expected));
   }
 
   @Test
   public void deleteEntry() {
     expected1.add(ENTRY_A);
     expected.remove(expected1);
-    List<List<String>> actual = addAndDeleteEntryCheckDuplicateImpl.deleteEntry(list, ENTRY_A);
+    List<List<String>> actual = addAndDeleteEntryCheckDuplicateImpl.deleteEntry(list, ENTRY_DELETE);
 
-    assertEquals(expected, actual);
+    assertThat(actual, is(expected));
   }
 }

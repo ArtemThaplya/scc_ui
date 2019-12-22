@@ -40,12 +40,12 @@
                 success:function(data)
                 {
                     var employee_data = data.split(/\r?\n|\r/);
-                    var table_data = '<table class="table table-bordered table-striped">';
-                    for(var count = 0; count<employee_data.length; count++)
+                    var table_data = '<table border="1" class="table table-bordered table-striped">';
+                    for (var count = 0; count < employee_data.length - 1; count++)
                     {
                         var cell_data = employee_data[count].split(",");
                         table_data += '<tr>';
-                        for(var cell_count=0; cell_count<cell_data.length; cell_count++)
+                        for(var cell_count=0; cell_count<cell_data.length - 1; cell_count++)
                         {
                             if(count === 0)
                             {
@@ -56,7 +56,8 @@
                                 table_data += '<td>'+cell_data[cell_count]+'</td>';
                             }
                         }
-                        table_data += '<td><button id="delete" type="button" class="">Delete</button></td>';  //todo: delete
+                        table_data += '<td><button type="button" class="" onclick="deleteEntry(this)"> Delete </button></td>';//todo: delete
+                        // alert(employee_data[count]);
                         table_data += '</tr>';
                     }
                     table_data += '</table>';
@@ -66,4 +67,26 @@
         });
     });
 
+
+    var entryDelete;
+    function deleteEntry() {
+        $('.table td').on('click', function () {
+            entryDelete = $(this).parent('tr').index(); //todo: fixed double click to delete
+            // alert($(this).parent('tr').index());
+        });
+        var result;
+        $.ajax({
+            url: 'http://localhost:8080/deleteEntryFromBucket',
+            datatype: 'json',
+            contentType: "application/json",
+            data: {
+                entryDelete: entryDelete
+            },
+            success: function (data) {
+                result = data;
+                alert("Запись удалена!")
+            }
+        });
+        // $('#deleteRow').parent().parent().remove();
+    }
 </script>

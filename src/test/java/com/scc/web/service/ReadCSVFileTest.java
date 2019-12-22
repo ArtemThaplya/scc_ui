@@ -8,7 +8,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 public class ReadCSVFileTest {
   private List<List<String>> expected;
@@ -30,6 +32,6 @@ public class ReadCSVFileTest {
     File file = new File("./src/test/resources/fileTest.csv");
     List<List<String>> actual = readCSVFile.readCSVFileToList(file);
 
-    assertEquals(expected, actual);
+    assertThat(actual, is(expected));
   }
 }

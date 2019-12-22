@@ -28,7 +28,7 @@ public class OperationService {
     return list;
   }
 
-  public List<List<String>> getDeleteEntry(List<List<String>> list, String entryDelete) {
+  public List<List<String>> getDeleteEntry(List<List<String>> list, int entryDelete) {
     return addAndDeleteEntryCheckDuplicate.deleteEntry(list, entryDelete);
   }
 

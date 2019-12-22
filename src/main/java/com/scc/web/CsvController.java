@@ -1,6 +1,8 @@
 package com.scc.web;
 
 import com.scc.web.service.OperationService;
+import java.io.File;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -8,12 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.File;
-import java.util.List;
-
 @RestController
 public class CsvController {
-
   private final OperationService operationService;
   private static final String fileCSV = "./src/main/webapp/file.csv";
   private final File file = new File(fileCSV);
@@ -40,7 +38,7 @@ public class CsvController {
   }
 
   @RequestMapping(value = "/deleteEntryFromBucket")
-  public boolean deleteEntryFromBucket(@RequestParam(value = "entryDelete") String entryDelete) {
+  public boolean deleteEntryFromBucket(@RequestParam(value = "entryDelete") int entryDelete) {
     List<List<String>> list =
         operationService.getDeleteEntry(operationService.getReadCSVFileToList(file), entryDelete);
     operationService.getFileWriterListToCSV(file, list);

@@ -1,105 +1,59 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>CSV File to HTML Table Using AJAX jQuery</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
-<div class="container">
-    <div class="table-responsive">
-        <h1 align="center">CSV File to HTML Table Using AJAX jQuery</h1>
-        <br />
-        <div align="center">
-            <button type="button" name="load_data" id="load_data" class="btn btn-info">Load Data</button>
-        </div>
-        <br />
-        <div id="employee_table">
-        </div>
-    </div>
-</div>
-</body>
-</html>
-
-<script>
-    $(document).ready(function(){
-        $('#load_data').click(function(){
-            $.ajax({
-                url:"file.csv",
-                dataType:"text",
-                success:function(data)
-                {
-                    var employee_data = data.split(/\r?\n|\r/);
-                    var table_data = '<table class="table table-bordered table-striped">';
-                    for(var count = 0; count<employee_data.length; count++)
-                    {
-                        var cell_data = employee_data[count].split(",");
-                        table_data += '<tr>';
-                        for(var cell_count=0; cell_count<cell_data.length; cell_count++)
-                        {
-                            if(count === 0)
-                            {
-                                table_data += '<th>'+cell_data[cell_count]+'</th>';
-                            }
-                            else
-                            {
-                                table_data += '<td>'+cell_data[cell_count]+'</td>';
-                            }
-                        }
-                        table_data += '</tr>';
-                    }
-                    table_data += '</table>';
-                    $('#employee_table').html(table_data);
-                }
-            });
-        });
-
-    });
-</script>
-
-
-
-
-
 <!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
+<!--<html>-->
 <!--<head>-->
-<!--    <meta charset="utf-8">-->
-<!--    <style>-->
-<!--        table {-->
-<!--            border-collapse: collapse;-->
-<!--            border: 2px black solid;-->
-<!--            font: 12px sans-serif;-->
-<!--        }-->
-
-<!--        td {-->
-<!--            border: 1px black solid;-->
-<!--            padding: 5px;-->
-<!--        }-->
-<!--    </style>-->
-<!--    <title>View | Delete</title>-->
+<!--    <title>CSV File to HTML Table Using AJAX jQuery</title>-->
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>-->
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />-->
+<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 <!--</head>-->
 <!--<body>-->
-<!--<script src="/js/d3.min.js?v=3.2.8"></script>-->
-
-<!--<script type="text/javascript" charset="utf-8">-->
-<!--    d3.text("../file.csv", function (data) {-->
-<!--        var parsedCSV = d3.csv.parseRows(data);-->
-<!--        var container = d3.select("body")-->
-<!--            .append("table")-->
-<!--            .selectAll("tr")-->
-<!--            .data(parsedCSV).enter()-->
-<!--            .append("tr")-->
-<!--            .selectAll("td")-->
-<!--            .data(function (d) {-->
-<!--                return d;-->
-<!--            }).enter()-->
-<!--            .append("td")-->
-<!--            .text(function (d) {-->
-<!--                return d;-->
-<!--            });-->
-<!--    });-->
-<!--</script>-->
+<!--<div class="container">-->
+<!--    <div class="table-responsive">-->
+<!--        <h1 align="center">CSV File to HTML Table Using AJAX jQuery</h1>-->
+<!--        <br />-->
+<!--        <div align="center">-->
+<!--            <button type="button" name="load_data" id="load_data" class="btn btn-info">Load Data</button>-->
+<!--        </div>-->
+<!--        <br />-->
+<!--        <div id="employee_table">-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 <!--</body>-->
 <!--</html>-->
+
+<!--<script>-->
+<!--    $(document).ready(function(){-->
+<!--        $('#load_data').click(function(){-->
+<!--            $.ajax({-->
+<!--                url:"file.csv",-->
+<!--                dataType:"text",-->
+<!--                success:function(data)-->
+<!--                {-->
+<!--                    var employee_data = data.split(/\r?\n|\r/);-->
+<!--                    var table_data = '<table class="table table-bordered table-striped">';-->
+<!--                    for(var count = 0; count<employee_data.length; count++)-->
+<!--                    {-->
+<!--                        var cell_data = employee_data[count].split(",");-->
+<!--                        table_data += '<tr>';-->
+<!--                        for(var cell_count=0; cell_count<cell_data.length; cell_count++)-->
+<!--                        {-->
+<!--                            if(count === 0)-->
+<!--                            {-->
+<!--                                table_data += '<th>'+cell_data[cell_count]+'</th>';-->
+<!--                            }-->
+<!--                            else-->
+<!--                            {-->
+<!--                                table_data += '<td>'+cell_data[cell_count]+'</td>';-->
+<!--                            }-->
+<!--                        }-->
+<!--                        table_data += '</tr>';-->
+<!--                    }-->
+<!--                    table_data += '</table>';-->
+<!--                    $('#employee_table').html(table_data);-->
+<!--                }-->
+<!--            });-->
+<!--        });-->
+
+<!--    });-->
+<!--</script>-->

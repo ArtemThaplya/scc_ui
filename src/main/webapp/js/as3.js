@@ -17,19 +17,19 @@ $('document').ready(function () {
         });
     });
 
-    $('#delete').on('click', function deleteEntry(f) {
-        var result;
-        $.ajax({
-            url: 'http://localhost:8080/deleteEntryFromBucket',
-            datatype: 'json',
-            contentType: "application/json",
-            data: {
-                entryDelete: f
-            },
-            success: function (data) {
-                result = data;
-                alert("Запись удалена!")
-            }
-        });
-    });
+    // $('#delete').on('click', function deleteEntry(f) {
+    //     var result;
+    //     $.ajax({
+    //         url: 'http://localhost:8080/deleteEntryFromBucket',
+    //         datatype: 'json',
+    //         contentType: "application/json",
+    //         data: {
+    //             entryDelete: f
+    //         },
+    //         success: function (data) {
+    //             result = data;
+    //             alert("Запись удалена!")
+    //         }
+    //     });
+    // });
 });
