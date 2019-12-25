@@ -1,49 +1,41 @@
 package com.scc.web.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 @Component
 public class OperationService {
-  private final AddAndDeleteEntryCheckDuplicate addAndDeleteEntryCheckDuplicate;
-  private final ReadCSVFile readCSVFile;
-  private final FileWriterListToCSV fileWriterListToCSV;
+  private final SaveSetToFile saveSetToFile;
+  private final AddAndDeleteEntry addAndDeleteEntry;
+  private final CreateSetWithFile createSetWithFile;
 
   @Autowired
   public OperationService(
-      AddAndDeleteEntryCheckDuplicate addAndDeleteEntryCheckDuplicate,
-      ReadCSVFile readCSVFile,
-      FileWriterListToCSV fileWriterListToCSV) {
-    this.addAndDeleteEntryCheckDuplicate = addAndDeleteEntryCheckDuplicate;
-    this.readCSVFile = readCSVFile;
-    this.fileWriterListToCSV = fileWriterListToCSV;
+      SaveSetToFile saveSetToFile, AddAndDeleteEntry addAndDeleteEntry,
+      CreateSetWithFile createSetWithFile) {
+    this.saveSetToFile = saveSetToFile;
+    this.addAndDeleteEntry = addAndDeleteEntry;
+    this.createSetWithFile = createSetWithFile;
   }
 
-  public List<List<String>> getCheckDuplicateAndAddEntry(List<List<String>> list, String entry) {
-    addAndDeleteEntryCheckDuplicate.checkDuplicateAndAddEntry(list, entry);
-    return list;
+  public boolean getAddEntry(Set<String> set, String entry) {
+    return addAndDeleteEntry.addEntry(set, entry);
   }
 
-  public List<List<String>> getDeleteEntry(List<List<String>> list, int entryDelete) {
-    return addAndDeleteEntryCheckDuplicate.deleteEntry(list, entryDelete);
+  public boolean getDeleteEntry(Set<String> set, String entry) {
+    return addAndDeleteEntry.deleteEntry(set, entry);
   }
 
-  public List<List<String>> getReadCSVFileToList(File file) {
-    return readCSVFile.readCSVFileToList(file);
+  public void getSaveSetToFile(File filePath, Set<String> set) throws IOException {
+    saveSetToFile.saveSetToFile(filePath, set);
   }
 
-  public void getFileWriterListToCSV(File fileCSV, List<List<String>> list) {
-    try {
-      fileWriterListToCSV.fileWriterListToCSV(fileCSV, list);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+  public Set<String> getCreateSetWithFile(String filePath) {
+    return createSetWithFile.createSetWithFile(filePath);
+
   }
-//  public boolean getCheckStatusOperation(){
-//    return addAndDeleteEntryCheckDuplicate.checkStatusOperation();
-//  }
 }
