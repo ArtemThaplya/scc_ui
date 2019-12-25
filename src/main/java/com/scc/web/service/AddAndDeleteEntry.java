@@ -1,6 +1,5 @@
 package com.scc.web.service;
 
-import java.io.FileNotFoundException;
 import java.util.Set;
 
 public interface AddAndDeleteEntry {

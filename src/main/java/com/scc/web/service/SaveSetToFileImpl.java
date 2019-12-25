@@ -17,7 +17,6 @@ public class SaveSetToFileImpl implements SaveSetToFile {
     BufferedWriter out = new BufferedWriter(new FileWriter(filPath));
     for (String s : set) {
       out.newLine();
-      logger.info(s);
       out.write(String.valueOf(s));
     }
     out.close();
